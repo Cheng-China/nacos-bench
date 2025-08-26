@@ -96,10 +96,11 @@ func InitNaming(perfConfig PerfConfig) {
 
 	serverConfigs := make([]constant.ServerConfig, 0)
 	for _, addr := range strings.Split(perfConfig.NacosAddr, ",") {
+		ip, port := parseAddrAndPort(addr)
 		serverConfigs = append(serverConfigs, constant.ServerConfig{
-			IpAddr:      addr,
+			IpAddr:      ip,
 			ContextPath: "/nacos",
-			Port:        8848,
+			Port:        port,
 		})
 	}
 	var wg sync.WaitGroup
