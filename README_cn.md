@@ -9,7 +9,7 @@
 |--configCount|配置个数|1000|
 |--instanceCountPerService|每个服务注册的服务提供者数|3|
 |--nacosClientCount|每个进程模拟的nacos client数|1000|
-|--nacosServerAddr|nacos服务端地址|127.0.0.1|
+|--nacosServerAddr|nacos服务端地址（支持IP:PORT格式，如果未指定端口则默认使用8848）|127.0.0.1|
 |--namingMetadataLength|服务提供者metadata数据大小|128字节|
 |--perfApi|需要压测的接口，可选值为： namingReg、namingQuery、namingSubscribe、configPub、configGet|namingReg|
 |--perfMode|压测模式，可选为：naming、config|naming|
@@ -32,4 +32,8 @@
 4. 配置查询
 ```
 ./nacos-bench --nacosServerAddr=127.0.0.1 --perfMode=config --perfApi=configGet --perfTps=100 --perfTime=900 --nacosClientCount=100 --configContentLength=64 --configCount=500
+```
+5. 测试自定义Nacos实例（使用自定义端口）
+```
+./nacos-bench --nacosServerAddr=100.93.6.64:9999 --perfMode=naming --perfApi=namingReg --perfTps=50 --perfTime=900 --nacosClientCount=100 --serviceCount=10000 --namingMetadataLength=64
 ```
